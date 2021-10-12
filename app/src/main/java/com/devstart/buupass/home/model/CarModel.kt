@@ -4,5 +4,6 @@ data class CarModel(
     val imageUrl: String,
     val carType: String,
     val amount: String,
-    val hireType: String
+    val hireType: String,
+    val title: String
 )
