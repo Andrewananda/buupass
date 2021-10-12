@@ -10,13 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BuuPass">
         <activity
+            android:name=".auth.LoginActivity"
+            android:exported="true"
+            android:theme="@style/Theme.NoActionBar"
+            />
+        <activity
             android:name=".MainActivity"
             android:exported="true" />
         <activity
             android:name=".splash.SplashScreen"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
-            >
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
