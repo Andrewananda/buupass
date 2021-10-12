@@ -2,7 +2,10 @@ package com.devstart.buupass.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.ActionBar
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.devstart.buupass.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -17,6 +20,12 @@ class MainActivity : AppCompatActivity() {
         val navHost = supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
         val navController = navHost.navController
         findViewById<BottomNavigationView>(R.id.bottom_nav).setupWithNavController(navController)
+
+        val appBar: ActionBar? = supportActionBar
+        appBar?.hide()
+        val actionBarConfig = AppBarConfiguration(setOf(R.id.dashboardFragment))
+
+        setupActionBarWithNavController(navController, actionBarConfig)
     }
 
 
