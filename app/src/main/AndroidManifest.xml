@@ -8,6 +8,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".BuuPass"
         android:theme="@style/Theme.BuuPass">
         <activity
             android:name=".auth.LoginActivity"
@@ -15,7 +16,7 @@
             android:theme="@style/Theme.NoActionBar"
             />
         <activity
-            android:name=".MainActivity"
+            android:name=".home.MainActivity"
             android:exported="true" />
         <activity
             android:name=".splash.SplashScreen"

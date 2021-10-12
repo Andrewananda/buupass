@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
-import com.devstart.buupass.MainActivity
 import com.devstart.buupass.R
 import com.devstart.buupass.auth.LoginActivity
 
