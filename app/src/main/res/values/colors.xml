@@ -11,4 +11,5 @@
     <color name="color_primary_variant">#cf2164</color>
     <color name="color_secondary">#f89e49</color>
     <color name="color_secondary_variant">#f39336</color>
+    <color name="color_light_gray">#EEF1F0F0</color>
 </resources>

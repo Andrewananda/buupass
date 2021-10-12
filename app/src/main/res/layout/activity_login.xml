@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_primary"
-    tools:context=".auth.LoginActivity">
+    tools:context=".auth.ui.LoginActivity">
 
     <ImageView
         android:id="@+id/logo"
@@ -27,8 +27,11 @@
         android:layout_marginTop="50dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
+        app:errorEnabled="true"
         app:hintTextColor="@color/white"
         app:boxStrokeColor="@color/white"
+        app:boxStrokeErrorColor="@color/white"
+        app:errorTextColor="@color/white"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         >
         <com.google.android.material.textfield.TextInputEditText
@@ -47,8 +50,15 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        app:hintTextColor="@color/white"
         app:boxStrokeColor="@color/white"
+        app:errorEnabled="true"
+        app:boxStrokeErrorColor="@color/white"
+        app:hintTextColor="@color/white"
+        app:errorTextColor="@color/white"
+        android:imeOptions="actionDone"
+        android:maxLines="1"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/white"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText

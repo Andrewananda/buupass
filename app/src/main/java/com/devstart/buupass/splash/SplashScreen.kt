@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
 import com.devstart.buupass.R
-import com.devstart.buupass.auth.LoginActivity
+import com.devstart.buupass.auth.ui.LoginActivity
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreen : AppCompatActivity() {
