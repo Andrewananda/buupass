@@ -15,8 +15,8 @@ class CarAdapter : ListAdapter<CarModel, CarAdapter.CarViewHolder>(CarDiffUtil) 
     inner class CarViewHolder(private val binding: CarItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: CarModel) {
             binding.title.text = item.title
-            binding.carType.text = item.carType
             binding.hireType.text = item.hireType
+            binding.amount.text = item.amount
             Glide.with(binding.root).load(item.imageUrl)
                 .placeholder(R.drawable.no_image)
                 .into(binding.imgTopDeals)

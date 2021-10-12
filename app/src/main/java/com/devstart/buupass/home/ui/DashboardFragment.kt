@@ -38,12 +38,12 @@ class DashboardFragment : Fragment() {
     }
 
     private fun loadCars(): MutableList<CarModel> {
-        return mutableListOf<CarModel>(
-            CarModel("https://cdn.pixabay.com/photo/2015/09/02/12/25/bmw-918408_1280.jpg","BMW","","",""),
-            CarModel("https://cdn.pixabay.com/photo/2017/03/27/14/56/auto-2179220_1280.jpg","Mercedes","","",""),
-            CarModel("https://cdn.pixabay.com/photo/2015/05/15/14/46/bmw-768688_1280.jpg","BMW","","",""),
-            CarModel("https://cdn.pixabay.com/photo/2015/12/08/00/28/car-1081742_1280.jpg","lamborghini","","",""),
-            CarModel("https://cdn.pixabay.com/photo/2015/01/19/13/51/car-604019_1280.jpg","Audi","","",""),
+        return mutableListOf(
+            CarModel("https://cdn.pixabay.com/photo/2015/09/02/12/25/bmw-918408_1280.jpg","BMW","Kes 10,000","Per Week","BMW"),
+            CarModel("https://cdn.pixabay.com/photo/2017/03/27/14/56/auto-2179220_1280.jpg","Mercedes","Kes 30,000","Per Day","Mercedes Benz"),
+            CarModel("https://cdn.pixabay.com/photo/2015/05/15/14/46/bmw-768688_1280.jpg","BMW","Kes 10,000","Per Hour","Bmw"),
+            CarModel("https://cdn.pixabay.com/photo/2015/12/08/00/28/car-1081742_1280.jpg","Lamborghini","Kes 50,000","Per Day","Lamborghini"),
+            CarModel("https://cdn.pixabay.com/photo/2015/01/19/13/51/car-604019_1280.jpg","Audi","Kes 5,000","Per Dy","Audi 4"),
         )
 
     }
