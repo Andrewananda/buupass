@@ -12,4 +12,6 @@
     <color name="color_secondary">#f89e49</color>
     <color name="color_secondary_variant">#f39336</color>
     <color name="color_light_gray">#F3F2F7</color>
+    <color name="color_dark_gray">#c0c0c0</color>
+    <color name="color_green">#4CAF50</color>
 </resources>

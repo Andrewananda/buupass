@@ -22,7 +22,7 @@
                 android:id="@+id/img_top_deals"
                 android:layout_width="340dp"
                 android:layout_height="100dp"
-                android:scaleType="fitXY"
+                android:scaleType="center"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
