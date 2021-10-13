@@ -8,6 +8,7 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import com.devstart.buupass.R
@@ -53,6 +54,8 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+
+
     private fun validateUserInput(isFirebase: Boolean) {
         val username = binding.txtUsername.text.toString().trim()
         val password = binding.txtPassword.text.toString().trim()
@@ -61,9 +64,15 @@ class LoginActivity : AppCompatActivity() {
         when {
             username.isBlank() -> {
                 binding.userNameLayout.error = getString(R.string.user_name_required)
+                binding.txtUsername.addTextChangedListener {
+                    binding.userNameLayout.error = null
+                }
             }
             password.isBlank() -> {
                 binding.passwordLayout.error = getString(R.string.password_required)
+                binding.txtPassword.addTextChangedListener {
+                    binding.passwordLayout.error = null
+                }
             }
             else -> {
                 if (!isFirebase) {

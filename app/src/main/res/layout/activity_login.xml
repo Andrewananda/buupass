@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_primary"
+    android:background="@drawable/splash_img"
     tools:context=".auth.ui.LoginActivity">
 
     <ImageView
@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="70dp"
         android:background="@drawable/circle_shape"
-        android:src="@drawable/logo_no_bg"
+        android:src="@drawable/logo2"
         />
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/user_name_layout"
@@ -28,10 +28,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         app:errorEnabled="true"
-        app:hintTextColor="@color/white"
-        app:boxStrokeColor="@color/white"
-        app:boxStrokeErrorColor="@color/white"
-        app:errorTextColor="@color/white"
+        android:textColorHint="@color/black"
+        app:boxStrokeColor="@color/black"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         >
         <com.google.android.material.textfield.TextInputEditText
@@ -39,6 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/username_hint"
+            android:textColor="@color/black"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -50,16 +49,15 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        app:boxStrokeColor="@color/white"
         app:errorEnabled="true"
-        app:boxStrokeErrorColor="@color/white"
-        app:hintTextColor="@color/white"
-        app:errorTextColor="@color/white"
         android:imeOptions="actionDone"
         android:maxLines="1"
         app:passwordToggleEnabled="true"
-        app:passwordToggleTint="@color/white"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        android:textColorHint="@color/black"
+        app:boxStrokeColor="@color/black"
+        app:passwordToggleTint="@color/black"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txt_password"
@@ -67,6 +65,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:hint="@string/password_hint"
+            android:textColor="@color/black"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -103,7 +102,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:indeterminateTint="@color/white"
+        android:indeterminateTint="@color/color_primary"
         android:visibility="gone"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
