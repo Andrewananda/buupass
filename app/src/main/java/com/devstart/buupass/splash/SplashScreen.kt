@@ -8,6 +8,8 @@ import android.os.Handler
 import android.view.WindowManager
 import com.devstart.buupass.R
 import com.devstart.buupass.auth.ui.LoginActivity
+import com.devstart.buupass.home.MainActivity
+import com.devstart.buupass.prefs
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreen : AppCompatActivity() {
@@ -21,9 +23,20 @@ class SplashScreen : AppCompatActivity() {
         )
 
         Handler().postDelayed({
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
+            if (userExist()) {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }else {
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         }, 4000)
+    }
+
+    private fun userExist(): Boolean {
+        val user = prefs.userPref
+        return !user.equals("")
     }
 }

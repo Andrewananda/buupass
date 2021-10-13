@@ -5,20 +5,31 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import com.devstart.buupass.R
 import com.devstart.buupass.auth.viewModel.LoginViewModel
 import com.devstart.buupass.data.model.Failure
+import com.devstart.buupass.data.model.PrefUser
 import com.devstart.buupass.data.model.Success
+import com.devstart.buupass.data.model.UserResponse
 import com.devstart.buupass.databinding.ActivityLoginBinding
 import com.devstart.buupass.home.MainActivity
+import com.devstart.buupass.prefs
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var auth: FirebaseAuth
+    private val mContext = this
 
     private val viewModel: LoginViewModel by viewModels()
 
@@ -33,11 +44,15 @@ class LoginActivity : AppCompatActivity() {
         )
 
         binding.btnLogin.setOnClickListener {
-            validateUserInput()
+            validateUserInput(false)
+        }
+
+        binding.btnFireLogin.setOnClickListener {
+            validateUserInput(true)
         }
     }
 
-    private fun validateUserInput() {
+    private fun validateUserInput(isFirebase: Boolean) {
         val username = binding.txtUsername.text.toString().trim()
         val password = binding.txtPassword.text.toString().trim()
 
@@ -52,20 +67,67 @@ class LoginActivity : AppCompatActivity() {
                 binding.passwordLayout.error = getString(R.string.password_required)
             }
             else -> {
-                viewModel.login(username, password)
-                observeResponse()
+                if (!isFirebase) {
+                    viewModel.login(username, password)
+                    observeResponse()
+                }else {
+                    loginFirebase(username, password)
+                }
             }
         }
+    }
+
+    private fun loginFirebase(email: String, password: String) {
+        auth = Firebase.auth
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+            val username = email.substringBefore("@")
+            if (it.isSuccessful){
+                val gson = Gson()
+                val user : String = gson.toJson(PrefUser(username, "",email))
+                prefs.userPref = user
+                navigateSuccessLogin()
+            }else {
+                if (userNotExistException(it.exception?.message)){
+                    auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { res ->
+                        if (res.isSuccessful){
+                            val gson = Gson()
+                            val user : String = gson.toJson(PrefUser(username, "",email))
+                            prefs.userPref = user
+                            navigateSuccessLogin()
+                        }else{
+                            Toast.makeText(mContext, res.exception?.message.toString(), Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }else{
+                    Log.i("WrongEmailOrPassword","WrongEmailOrPassword")
+                }
+            }
+        }
+    }
+
+    private fun userNotExistException(string: String?) : Boolean {
+        return string == "There is no user record corresponding to this identifier. The user may have been deleted."
+    }
+
+    private fun navigateSuccessLogin() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun observeResponse() {
         viewModel.getUserResponse().observe(this, Observer {
             when(it) {
                 is Success<*> -> {
-                    Log.i("Response", it.toString())
+                    val res = it.data as UserResponse
+                    val username = res.data.first_name + " " + res.data.last_name
+                    val gson = Gson()
+                    val user : String = gson.toJson(PrefUser(username, res.data.avatar,res.data.email))
+                    prefs.userPref = user
+                    navigateSuccessLogin()
                 }
                 is Failure -> {
-                    Log.i("Error", it.throwable.localizedMessage)
+                    Toast.makeText(this, "An error occurred while trying to log in, please try again later", Toast.LENGTH_LONG).show()
                 }
             }
         })
