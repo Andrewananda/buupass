@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -56,8 +57,6 @@ class LoginActivity : AppCompatActivity() {
         val username = binding.txtUsername.text.toString().trim()
         val password = binding.txtPassword.text.toString().trim()
 
-//        val intent = Intent(this, MainActivity::class.java)
-//        startActivity(intent)
 
         when {
             username.isBlank() -> {
@@ -68,9 +67,11 @@ class LoginActivity : AppCompatActivity() {
             }
             else -> {
                 if (!isFirebase) {
+                    binding.progressBar.visibility = View.VISIBLE
                     viewModel.login(username, password)
                     observeResponse()
                 }else {
+                    binding.progressBar.visibility = View.VISIBLE
                     loginFirebase(username, password)
                 }
             }
@@ -85,6 +86,7 @@ class LoginActivity : AppCompatActivity() {
                 val gson = Gson()
                 val user : String = gson.toJson(PrefUser(username, "",email))
                 prefs.userPref = user
+                binding.progressBar.visibility = View.GONE
                 navigateSuccessLogin()
             }else {
                 if (userNotExistException(it.exception?.message)){
@@ -93,13 +95,16 @@ class LoginActivity : AppCompatActivity() {
                             val gson = Gson()
                             val user : String = gson.toJson(PrefUser(username, "",email))
                             prefs.userPref = user
+                            binding.progressBar.visibility = View.GONE
                             navigateSuccessLogin()
                         }else{
+                            binding.progressBar.visibility = View.GONE
                             Toast.makeText(mContext, res.exception?.message.toString(), Toast.LENGTH_LONG).show()
                         }
                     }
                 }else{
-                    Log.i("WrongEmailOrPassword","WrongEmailOrPassword")
+                    binding.progressBar.visibility = View.GONE
+                    Toast.makeText(mContext, "Wrong Username or Password", Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -124,9 +129,11 @@ class LoginActivity : AppCompatActivity() {
                     val gson = Gson()
                     val user : String = gson.toJson(PrefUser(username, res.data.avatar,res.data.email))
                     prefs.userPref = user
+                    binding.progressBar.visibility = View.GONE
                     navigateSuccessLogin()
                 }
                 is Failure -> {
+                    binding.progressBar.visibility = View.GONE
                     Toast.makeText(this, "An error occurred while trying to log in, please try again later", Toast.LENGTH_LONG).show()
                 }
             }

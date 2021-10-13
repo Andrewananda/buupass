@@ -1,5 +1,6 @@
 package com.devstart.buupass.profile
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,10 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.devstart.buupass.R
+import com.devstart.buupass.auth.ui.LoginActivity
 import com.devstart.buupass.data.model.PrefUser
 import com.devstart.buupass.databinding.FragmentProfileBinding
 import com.devstart.buupass.prefs
 import com.devstart.buupass.profile.model.HireModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,6 +37,23 @@ class ProfileFragment : Fragment() {
         val hireItems = loadHireItems()
         adapter.submitList(hireItems)
         setUpUserData()
+
+        binding.logout.setOnClickListener {
+
+            context?.let { ctx ->
+                MaterialAlertDialogBuilder(ctx)
+                    .setMessage("Are you sure you want to logout")
+                    .setNegativeButton("No") { dialog, which ->
+                    }
+                    .setPositiveButton("Logout") { dialog, which ->
+                        prefs.userPref = ""
+                        val intent = Intent(context, LoginActivity::class.java)
+                        startActivity(intent)
+                    }
+                    .show()
+            }
+            }
+
     }
 
     private fun setUpUserData() {
@@ -43,6 +63,7 @@ class ProfileFragment : Fragment() {
 
         Glide.with(this).load(user.imageUrl)
             .placeholder(R.drawable.logo_no_bg)
+            .circleCrop()
             .into(binding.profileImg)
     }
 

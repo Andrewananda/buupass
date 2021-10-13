@@ -46,6 +46,7 @@ class DashboardFragment : Fragment() {
         val user = Gson().fromJson(prefs.userPref, PrefUser::class.java)
         Glide.with(this).load(user.imageUrl)
             .placeholder(R.drawable.logo)
+            .circleCrop()
             .into(binding.profileImg)
         val cars = loadCars()
         adapter.submitList(cars)
