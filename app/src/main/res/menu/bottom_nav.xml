@@ -3,6 +3,6 @@
     <group>
         <item android:id="@+id/dashboardFragment" android:title="Home" android:icon="@drawable/home" />
         <item android:id="@+id/carsFragment" android:title="Available Cars" android:icon="@drawable/car_icon" />
-        <item android:id="@+id/profile" android:title="Profile" android:icon="@drawable/person" />
+        <item android:id="@+id/profileFragment" android:title="Profile" android:icon="@drawable/person" />
     </group>
 </menu>
