@@ -41,21 +41,21 @@ class LoginActivity : AppCompatActivity() {
         val username = binding.txtUsername.text.toString().trim()
         val password = binding.txtPassword.text.toString().trim()
 
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
+//        val intent = Intent(this, MainActivity::class.java)
+//        startActivity(intent)
 
-//        when {
-//            username.isBlank() -> {
-//                binding.userNameLayout.error = getString(R.string.user_name_required)
-//            }
-//            password.isBlank() -> {
-//                binding.passwordLayout.error = getString(R.string.password_required)
-//            }
-//            else -> {
-//                viewModel.login(username, password)
-//                observeResponse()
-//            }
-//        }
+        when {
+            username.isBlank() -> {
+                binding.userNameLayout.error = getString(R.string.user_name_required)
+            }
+            password.isBlank() -> {
+                binding.passwordLayout.error = getString(R.string.password_required)
+            }
+            else -> {
+                viewModel.login(username, password)
+                observeResponse()
+            }
+        }
     }
 
     private fun observeResponse() {
