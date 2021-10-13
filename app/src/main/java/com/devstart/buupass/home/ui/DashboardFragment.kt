@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.devstart.buupass.R
 import com.devstart.buupass.databinding.FragmentDashboardBinding
 import com.devstart.buupass.home.model.CarModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +31,9 @@ class DashboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.moreView.setOnClickListener {
+            findNavController().navigate(R.id.action_dashboardFragment_to_carsFragment)
+        }
         loadView()
     }
 

@@ -213,33 +213,37 @@
             android:layout_marginStart="10dp"
             app:layout_constraintStart_toStartOf="parent"
             />
-        <TextView
+        <LinearLayout
+            android:id="@+id/more_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="More"
             app:layout_constraintTop_toBottomOf="@id/card_view"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:textColor="@color/color_secondary"
-            app:layout_constraintEnd_toStartOf="@+id/greater_than"
-            />
-    <ImageView
-        android:id="@+id/greater_than"
-        android:layout_width="30dp"
-        android:layout_height="18dp"
-        app:layout_constraintTop_toBottomOf="@id/card_view"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/greater_than"
-        />
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="More"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/color_secondary"
+                app:layout_constraintEnd_toStartOf="@+id/greater_than"
+                />
+            <ImageView
+                android:id="@+id/greater_than"
+                android:layout_width="30dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/greater_than"
+                />
+        </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/greater_than"
+        app:layout_constraintTop_toBottomOf="@id/more_view"
         android:layout_marginTop="10dp"
         tools:itemCount="10"
         android:orientation="horizontal"
