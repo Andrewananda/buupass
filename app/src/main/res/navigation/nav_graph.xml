@@ -9,5 +9,14 @@
         android:id="@+id/dashboardFragment"
         android:name="com.devstart.buupass.home.ui.DashboardFragment"
         android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_carsFragment"
+            app:destination="@id/carsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/carsFragment"
+        android:name="com.devstart.buupass.cars.CarsFragment"
+        android:label="fragment_cars"
+        tools:layout="@layout/fragment_cars" />
 </navigation>
