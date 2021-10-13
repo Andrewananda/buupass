@@ -39,6 +39,9 @@ class DashboardFragment : Fragment() {
         binding.moreView.setOnClickListener {
             findNavController().navigate(R.id.action_dashboardFragment_to_carsFragment)
         }
+        binding.profileImg.setOnClickListener {
+            findNavController().navigate(R.id.action_dashboardFragment_to_profileFragment)
+        }
         loadView()
     }
 

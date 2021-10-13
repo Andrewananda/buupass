@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_dashboardFragment_to_carsFragment"
             app:destination="@id/carsFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/carsFragment"
