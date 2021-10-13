@@ -1,15 +1,20 @@
 package com.devstart.buupass.home.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.devstart.buupass.R
+import com.devstart.buupass.data.model.PrefUser
 import com.devstart.buupass.databinding.FragmentDashboardBinding
 import com.devstart.buupass.home.model.CarModel
+import com.devstart.buupass.prefs
+import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,6 +43,10 @@ class DashboardFragment : Fragment() {
     }
 
     private fun loadView() {
+        val user = Gson().fromJson(prefs.userPref, PrefUser::class.java)
+        Glide.with(this).load(user.imageUrl)
+            .placeholder(R.drawable.logo)
+            .into(binding.profileImg)
         val cars = loadCars()
         adapter.submitList(cars)
     }

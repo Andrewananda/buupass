@@ -5,9 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.devstart.buupass.R
+import com.devstart.buupass.data.model.PrefUser
 import com.devstart.buupass.databinding.FragmentProfileBinding
+import com.devstart.buupass.prefs
 import com.devstart.buupass.profile.model.HireModel
+import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -29,6 +33,17 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val hireItems = loadHireItems()
         adapter.submitList(hireItems)
+        setUpUserData()
+    }
+
+    private fun setUpUserData() {
+        val user = Gson().fromJson(prefs.userPref, PrefUser::class.java)
+        binding.username.text = user.username
+        binding.email.text = user.email
+
+        Glide.with(this).load(user.imageUrl)
+            .placeholder(R.drawable.logo_no_bg)
+            .into(binding.profileImg)
     }
 
     private fun loadHireItems() : MutableList<HireModel> {
