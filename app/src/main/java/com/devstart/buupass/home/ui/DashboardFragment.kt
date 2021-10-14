@@ -50,6 +50,14 @@ class DashboardFragment : Fragment() {
             findNavController().navigate(R.id.action_dashboardFragment_to_carsFragment)
         }
 
+        binding.btnRetry.setOnClickListener {
+            displayViewContent()
+        }
+
+        displayViewContent()
+    }
+
+    private fun displayViewContent() {
         if (checkConnectivity()){
             binding.mainView.visibility = View.VISIBLE
             binding.internetConnection.visibility = View.GONE
@@ -57,9 +65,6 @@ class DashboardFragment : Fragment() {
         }else {
             binding.mainView.visibility = View.GONE
             binding.internetConnection.visibility = View.VISIBLE
-            binding.btnRetry.setOnClickListener {
-                checkConnectivity()
-            }
         }
     }
 
