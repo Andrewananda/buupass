@@ -1,5 +1,8 @@
 package com.devstart.buupass.home.ui
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -42,7 +45,28 @@ class DashboardFragment : Fragment() {
         binding.profileImg.setOnClickListener {
             findNavController().navigate(R.id.action_dashboardFragment_to_profileFragment)
         }
-        loadView()
+
+        binding.cardView.setOnClickListener {
+            findNavController().navigate(R.id.action_dashboardFragment_to_carsFragment)
+        }
+
+        if (checkConnectivity()){
+            binding.mainView.visibility = View.VISIBLE
+            binding.internetConnection.visibility = View.GONE
+            loadView()
+        }else {
+            binding.mainView.visibility = View.GONE
+            binding.internetConnection.visibility = View.VISIBLE
+            binding.btnRetry.setOnClickListener {
+                checkConnectivity()
+            }
+        }
+    }
+
+    private fun checkConnectivity(): Boolean {
+        val cm = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
+        return activeNetwork?.isConnectedOrConnecting == true
     }
 
     private fun loadView() {

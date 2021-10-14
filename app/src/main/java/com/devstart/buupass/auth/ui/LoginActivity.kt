@@ -58,7 +58,11 @@ class LoginActivity : AppCompatActivity() {
 
     private fun validateUserInput(isFirebase: Boolean) {
         val username = binding.txtUsername.text.toString().trim()
-        val password = binding.txtPassword.text.toString().trim()
+        val password: String = if(isFirebase) {
+            binding.txtPassword.text.toString().trim()
+        }else{
+            "secret"
+        }
 
 
         when {
