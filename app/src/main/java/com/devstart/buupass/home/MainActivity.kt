@@ -2,6 +2,7 @@ package com.devstart.buupass.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.ActionBar
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         val appBar: ActionBar? = supportActionBar
         appBar?.hide()
         val actionBarConfig = AppBarConfiguration(setOf(R.id.dashboardFragment))
+
 
         setupActionBarWithNavController(navController, actionBarConfig)
     }
