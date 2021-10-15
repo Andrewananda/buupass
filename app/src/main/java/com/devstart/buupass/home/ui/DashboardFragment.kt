@@ -1,10 +1,7 @@
 package com.devstart.buupass.home.ui
 
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkInfo
+
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +14,7 @@ import com.devstart.buupass.data.model.PrefUser
 import com.devstart.buupass.databinding.FragmentDashboardBinding
 import com.devstart.buupass.home.model.CarModel
 import com.devstart.buupass.prefs
+import com.devstart.buupass.util.checkConnectivity
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -58,7 +56,7 @@ class DashboardFragment : Fragment() {
     }
 
     private fun displayViewContent() {
-        if (checkConnectivity()){
+        if (checkConnectivity(context)){
             binding.mainView.visibility = View.VISIBLE
             binding.internetConnection.visibility = View.GONE
             loadView()
@@ -66,12 +64,6 @@ class DashboardFragment : Fragment() {
             binding.mainView.visibility = View.GONE
             binding.internetConnection.visibility = View.VISIBLE
         }
-    }
-
-    private fun checkConnectivity(): Boolean {
-        val cm = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
-        return activeNetwork?.isConnectedOrConnecting == true
     }
 
     private fun loadView() {
