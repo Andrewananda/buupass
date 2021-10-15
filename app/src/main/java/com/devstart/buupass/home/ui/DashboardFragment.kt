@@ -15,6 +15,8 @@ import com.devstart.buupass.databinding.FragmentDashboardBinding
 import com.devstart.buupass.home.model.CarModel
 import com.devstart.buupass.prefs
 import com.devstart.buupass.util.checkConnectivity
+import com.devstart.buupass.util.hide
+import com.devstart.buupass.util.show
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -57,12 +59,12 @@ class DashboardFragment : Fragment() {
 
     private fun displayViewContent() {
         if (checkConnectivity(context)){
-            binding.mainView.visibility = View.VISIBLE
-            binding.internetConnection.visibility = View.GONE
+            binding.mainView.show()
+            binding.internetConnection.hide()
             loadView()
         }else {
-            binding.mainView.visibility = View.GONE
-            binding.internetConnection.visibility = View.VISIBLE
+            binding.mainView.hide()
+            binding.internetConnection.show()
         }
     }
 
